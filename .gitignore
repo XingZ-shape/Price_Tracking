@@ -1,0 +1,44 @@
+# Private runtime configuration and state (templates remain tracked)
+config.json
+config.local.json
+*.runtime.json
+local-manifest.json
+commit-manifest.json
+.env
+.env.*
+!.env.example
+
+# Captured data, exports, pending writes, and backups
+runtime/
+data/
+image/
+images/
+output/
+outputs/
+backups/
+pending/
+*.xlsx
+*.xls
+*.csv
+*.tsv
+*_capture.json
+*_history.json
+
+# Authentication/session artifacts and screenshots
+credentials/
+sessions/
+profiles/
+screenshots/
+*.har
+*.log
+
+# Local editor and operating-system files
+.DS_Store
+Thumbs.db
+__pycache__/
+
+# Populated price-tracking deployment metadata
+price_tracking_config.json
+baseline_commit_manifest.json
+.price-tracking-manifest.json
+*_commit_manifest.json

@@ -1,0 +1,80 @@
+{
+  "skill_version": "1.1.1",
+  "schema_version": "1.1.0",
+  "dataset_id": null,
+  "platform": null,
+  "cart_url": null,
+  "anonymous_account_partition": null,
+  "timezone": null,
+  "currency": "CNY",
+  "permissions": {
+    "cloud_processing": false,
+    "single_item_toggle": false,
+    "named_combo_toggle": false,
+    "create_desktop_folders": false,
+    "recycle_owned_superseded_images": false,
+    "first_capture_accepted": false,
+    "recurring_capture": false
+  },
+  "canonical_excel_id": null,
+  "canonical_source_id": null,
+  "commit_manifest_id": null,
+  "scheduler_task_id": null,
+  "notification_target": null,
+  "active_combos": [],
+  "plot_reminder": {
+    "enabled": null,
+    "interval_days": 3,
+    "requires_new_data": false,
+    "local_time": null,
+    "last_period_id": null,
+    "anchor_at": null,
+    "default_proposed_local_time": "10:00",
+    "schedule_mode": null,
+    "timezone_policy": "inherit_schedule_timezone",
+    "last_sent_at": null,
+    "period_sequence": null
+  },
+  "local": {
+    "device_id": null,
+    "resolved_desktop": null,
+    "root_folder": "Price tracking",
+    "data_subfolder": "data",
+    "image_subfolder": "image",
+    "sync_only_on_request": true
+  },
+  "automatic_imputation": false,
+  "automatic_chart_generation": false,
+  "created_at": null,
+  "timezone_policy": {
+    "mode": "follow_user",
+    "iana_timezone": null,
+    "source": null,
+    "verified_at": null,
+    "fixed_offset_minutes": null,
+    "last_verified_timezone": null
+  },
+  "schedule": {
+    "mode": "elapsed_interval",
+    "interval_hours": 4,
+    "anchor_utc": null,
+    "daily_local_time": null,
+    "wall_clock_times": [],
+    "default_proposed_daily_local_time": "10:00",
+    "dst_gap": "skip_and_log",
+    "dst_fold": "first_occurrence",
+    "revision_id": null,
+    "effective_from_utc": null,
+    "verified_scheduler_support": false
+  },
+  "identity_policy": {
+    "allowed_statuses": [
+      "VERIFIED_SKU",
+      "VERIFIED_SINGLE_VARIANT",
+      "UNRESOLVED_VARIANT"
+    ],
+    "allow_null_sku": true,
+    "single_variant_requires_explicit_evidence": true,
+    "mapping_history": "append_only"
+  }
+}

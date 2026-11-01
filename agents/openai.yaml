@@ -1,0 +1,15 @@
+interface:
+  display_name: Shopping Cart Price History Tracking
+  short_description: 'Cart prices/offers: observed vs estimated; charts and local
+    sync'
+  default_prompt: Use $price-tracking to set up shopping-cart price history tracking,
+    first verifying the site, permissions, and operating conditions.
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  products:
+  - chatgpt
+  - codex
+  - api
+  - atlas
+  allow_implicit_invocation: true

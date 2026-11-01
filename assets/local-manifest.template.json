@@ -1,0 +1,19 @@
+{
+  "manifest_version": "1.0.0",
+  "owner_skill": "price-tracking",
+  "dataset_id": null,
+  "verified_root": null,
+  "files": [],
+  "file_entry_fields": [
+    "relative_path",
+    "role",
+    "sha256",
+    "cloud_identity",
+    "cloud_version",
+    "commit_id",
+    "created_at",
+    "updated_at"
+  ],
+  "last_synced_at": null,
+  "pending_actions": []
+}
