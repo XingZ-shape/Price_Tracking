@@ -177,4 +177,16 @@ The package includes procedural acceptance criteria and synthetic regression sce
 
 ## License
 
-No license has been selected for this repository. Public availability does not itself grant an open-source license.
+Copyright © 2026 XingZ-shape. The copyrightable skill instructions, documentation, configuration templates, and artwork in this repository are licensed under the [Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/), unless a file or third-party component states otherwise. The full license is provided in [LICENSE](LICENSE).
+
+You may use, share, and adapt the licensed material for noncommercial purposes under the license terms. When sharing it, preserve the supplied attribution and notices, provide a link to the license, and indicate whether you made changes. For example:
+
+> Price Tracking by [XingZ-shape](https://github.com/XingZ-shape/Price_Tracking), licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Changes: [describe your changes, if any].
+
+Keeping this attribution in a redistributed skill's README or accompanying documentation is generally a practical way to credit the project. You do not need to display a credit on every invocation of the skill, and compliant noncommercial sharing does not require asking the author for permission each time.
+
+“NonCommercial” means not primarily intended for or directed towards commercial advantage or monetary compensation; it is not determined solely by whether the user is an individual, nonprofit, or company. Commercial uses not covered by an applicable exception require separate permission from XingZ-shape and are not authorized by this license.
+
+This repository primarily distributes agent instructions and supporting materials, not a standalone executable software package. Any executable software added later should receive a separate license assessment. Users' private shopping datasets, account credentials, and browser sessions are not distributed with this repository or licensed by this notice.
+
+The full license controls, including its exceptions and limitations. This notice does not restrict uses that do not require permission under applicable law.
