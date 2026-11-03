@@ -60,7 +60,17 @@ Price_Tracking/
     └── storage-schema.md
 ```
 
-The current configuration template identifies skill version **1.1.1** and schema version **1.1.0**. Templates are intentionally unconfigured: null identifiers and false permission flags are not a working deployment. Do not publish a populated configuration or a live dataset to this repository.
+The current configuration template identifies skill version **1.2.0** and schema version **1.2.0**. Templates are intentionally unconfigured: null identifiers and false permission flags are not a working deployment. Do not publish a populated configuration or a live dataset to this repository.
+
+## Automation-first workflow updates
+
+The assistant first completes supported, authorized steps itself and bundles missing setup questions. For JD, prefer https://m.jd.com/ and its normal cart entry, which can lead to https://mtrade.jd.hk/cart/cart.action. Verify the live official flow, account, and regular-shopping/instant-delivery scope; this is not a route around security refusals. Stop and preserve partial data if selection state reverts.
+
+Onboarding previews possible manual steps: secure login/device or phone verification, mandatory approvals, connecting the local computer, and downloading a ZIP only after supported automatic transfer cannot complete. Existing specific grants avoid repeated questions; silence never grants consent, and current CAPTCHA, explicit legal-agreement, and action-time rules still apply. Installing a public skill cannot confer another user's permissions.
+
+Show the same product's desktop/mobile observations in one timeline while retaining source, quantity, context, and conditional-price evidence. Preserve Excel/source history. Skill-owned cloud charts may be recoverably cleaned after verified delivery and completion of pending consumers, with authorization; an accepted send alone is insufficient.
+
+For local sync, first attempt supported automatic transfer. If unavailable, send a verified ZIP; after the user downloads it, local Codex checks hashes and a manifest, safely extracts, and publishes to the actual Desktop folders without overwriting user edits. Never patch official helpers or bypass access restrictions to force transfer.
 
 ## Getting started
 
@@ -70,7 +80,7 @@ Ask the assistant to use the `price-tracking` skill. It should explain the basic
 2. **Choose a schedule.** The initial proposal is every four hours, but every N hours, daily, and specified local times are supported when the scheduler supports them.
 3. **Verify your timezone.** The workflow follows trusted user-timezone signals, not the cloud machine's clock. It retains the last verified timezone while you are offline. A UTC offset alone does not establish a geographic timezone.
 4. **Authorize cloud processing and selection changes.** Tracking is not buying authorization. Specify any combinations you already care about, or add them later.
-5. **Complete login securely on the official page.** Use the site's supported password, QR-code, SMS-code, or other authentication flow. Enter credentials and verification codes through the secure login interface, not the conversation. The assistant must verify that the cart is actually readable afterward.
+5. **Complete login securely on the official page.** Use the site's supported password, QR-code, SMS-code, or other authentication flow. Use supported secure authentication; the assistant completes permitted ordinary steps and asks only for input or approval it genuinely needs. The assistant must verify that the cart is actually readable afterward.
 6. **Review the first technical capture.** The assistant shows brief samples, fields, coverage, missing information, and selection-restoration status. Recurring capture starts only after acceptance and verified task creation.
 
 The assistant should avoid asking again for settings or authorization you have already explicitly provided. Installing the skill on another assistant does not transfer your permissions, browser session, files, or existing scheduled tasks.

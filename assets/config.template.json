@@ -1,6 +1,6 @@
 {
-  "skill_version": "1.1.1",
-  "schema_version": "1.1.0",
+  "skill_version": "1.2.0",
+  "schema_version": "1.2.0",
   "dataset_id": null,
   "platform": null,
   "cart_url": null,
@@ -41,7 +41,9 @@
     "root_folder": "Price tracking",
     "data_subfolder": "data",
     "image_subfolder": "image",
-    "sync_only_on_request": true
+    "sync_only_on_request": true,
+    "automatic_transfer_first": true,
+    "verified_zip_fallback": true
   },
   "automatic_imputation": false,
   "automatic_chart_generation": false,
@@ -76,5 +78,23 @@
     "allow_null_sku": true,
     "single_variant_requires_explicit_evidence": true,
     "mapping_history": "append_only"
+  },
+  "automation_policy": {
+    "normal_ui_first": true,
+    "authorization_evidence_refs": [],
+    "approved_cart_origins": [],
+    "ordinary_captcha_scope": null,
+    "silence_is_consent": false,
+    "final_selection_policy": "restore_baseline",
+    "explicit_final_selection": null
+  },
+  "presentation": {
+    "unify_desktop_mobile_product_history": true,
+    "preserve_observation_provenance": true
+  },
+  "chart_retention": {
+    "cleanup_after_verified_delivery": false,
+    "recoverable_only": true,
+    "require_no_pending_consumers": true
   }
 }
