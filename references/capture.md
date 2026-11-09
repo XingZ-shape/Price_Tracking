@@ -1,5 +1,7 @@
 # Normal-UI collection for each run
 
+For a local-browser capture, first read local-browser-fallback.md and apply its environment, handoff, and provenance checks. A read-only/no-cart-modification instruction forbids selection toggles even if previous configuration allowed them; skip sections D/E and save the baseline only.
+
 ## A. Start and refresh
 1. Read this run's scheduled time, configuration, latest user restrictions, and combination definitions; acquire the dataset's exclusive lock. If the same run is already committed, return its status without repeating operations. First download the latest authoritative Excel/JSON and their version numbers.
 2. Locate the target site through the current tool's normal tab list; do not reuse old tab IDs. Confirm that neither the user nor another run is operating concurrently. Stop and report any outside interaction; do not compete with the user for control.

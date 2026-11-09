@@ -29,9 +29,9 @@ The hosting assistant needs capabilities appropriate to the requested operation:
 | Persistent cloud storage and workbook editing | Preserve and validate the authoritative Excel, source JSON, and commit state |
 | A real persistent scheduler | Run captures after the conversation ends or the user's computer is off |
 | A user notification channel | Report captures, blockers, and approved reminders |
-| Authorized access to the user's computer, when available | Create desktop folders and fulfill local sync requests |
+| Authorized access to the user's computer, when available | Perform an explicitly requested local-browser capture, create authorized desktop folders, and fulfill local sync requests |
 
-Cloud capture must not depend on the user's computer staying on. If the host cannot provide persistent cloud operation, the assistant must say so instead of promising unattended capture. Desktop operations can remain pending while the local computer is offline.
+Verified cloud capture does not depend on the user's computer staying on. An explicitly authorized local-browser capture does depend on that computer, its browser connection, and its session remaining available. If the host cannot provide persistent cloud operation, the assistant must say so instead of promising unattended capture. A successful interactive local capture does not establish unattended reliability.
 
 ## Installation
 
@@ -56,11 +56,12 @@ Price_Tracking/
     ├── automation-recovery.md
     ├── capture.md
     ├── charts-sync.md
+    ├── local-browser-fallback.md
     ├── onboarding-auth.md
     └── storage-schema.md
 ```
 
-The current configuration template identifies skill version **1.2.0** and schema version **1.2.0**. Templates are intentionally unconfigured: null identifiers and false permission flags are not a working deployment. Do not publish a populated configuration or a live dataset to this repository.
+The current configuration template identifies skill version **1.3.0** and schema version **1.3.0**. Templates are intentionally unconfigured: null identifiers and false permission flags are not a working deployment. Do not publish a populated configuration or a live dataset to this repository.
 
 ## Automation-first workflow updates
 
@@ -71,6 +72,14 @@ Onboarding previews possible manual steps: secure login/device or phone verifica
 Show the same product's desktop/mobile observations in one timeline while retaining source, quantity, context, and conditional-price evidence. Preserve Excel/source history. Skill-owned cloud charts may be recoverably cleaned after verified delivery and completion of pending consumers, with authorization; an accepted send alone is insufficient.
 
 For local sync, first attempt supported automatic transfer. If unavailable, send a verified ZIP; after the user downloads it, local Codex checks hashes and a manifest, safely extracts, and publishes to the actual Desktop folders without overwriting user edits. Never patch official helpers or bypass access restrictions to force transfer.
+
+## When the cloud browser is unavailable
+
+For an ordinary missing cloud capability or connection failure, you can explicitly ask the assistant to capture from a named local computer and browser. The assistant verifies that it is using that computer, follows any requested homepage → cart route, and hands over login or verification when you ask. After you return, it rechecks the same tab and refreshes the actual cart before collecting.
+
+A read-only request means no selection toggles or other cart changes. The result is a displayed-price baseline, not a set of measured individual or combination selection quotes. The history records the source device privately, actual observation time, coverage, failed attempts, and save outcome. This does not authorize desktop file synchronization or publication of your cart data.
+
+This fallback never overrides an explicit access or security denial. It does not silently change an existing cloud schedule. The computer must be online and reachable, and later login or verification may need your help. Recurring local capture requires separate authorization and verified scheduler support. See [local-browser fallback](references/local-browser-fallback.md).
 
 ## Getting started
 
@@ -148,6 +157,7 @@ Charts use simple descriptive filenames. When you request an updated chart set, 
 | --- | --- |
 | Start | “Use price-tracking for my JD cart. Propose a four-hour schedule.” |
 | Capture immediately | “Capture now and report the save status.” |
+| Use a local browser | “Use my laptop browser: open the official homepage, then the cart. Let me handle login or verification. Only read and record prices; do not modify the cart.” |
 | Change timing | “Change the frequency to every six hours.” |
 | Daily timing | “Capture daily at 10:00 in my verified local timezone.” |
 | Add a combination | “Track combination ‘Home office’: these two specific cart items, at their current quantities.” |
@@ -173,6 +183,7 @@ Instructions are in English, but the assistant should communicate and label char
 
 - [Skill entry point](SKILL.md): routing, boundaries, and the end-to-end workflow.
 - [Onboarding and authentication](references/onboarding-auth.md): capability checks, permissions, login, and first-run setup.
+- [Local-browser fallback](references/local-browser-fallback.md): device selection, homepage-to-cart routing, manual handoff, read-only capture, provenance, and availability limits.
 - [Capture procedure](references/capture.md): refresh, list coverage, selections, quotes, and promotions.
 - [Storage schema](references/storage-schema.md): 19 tables, identity rules, evidence, and durable commits.
 - [Analysis](references/analysis.md): historical reconstruction, uncertainty, and comparison rules.

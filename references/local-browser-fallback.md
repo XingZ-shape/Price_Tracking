@@ -1,0 +1,49 @@
+# Authorized local-browser fallback
+
+Use this procedure when the cloud browser capability or connectivity is unavailable, or the user explicitly requests a capture in their local browser. It is not a way to override an explicit tool, website, account, or security access denial. Local capture and local file synchronization are separate operations.
+
+## 1. Decide whether the route is permitted
+- Record the observed cloud failure, exact action/target, time, and error classification before proposing a fallback. A tool refusal before page access is TOOL_POLICY_DENIED, not evidence of a website CAPTCHA, overseas-IP block, or an empty cart.
+- Stop a denied operation. Do not change devices, environments, accounts, proxies/VPNs, private windows, interfaces, or credentials to evade the restriction. Resolve an explicit denial through the permitted authorization/support path; a generic request to continue or this skill does not override it.
+- For ordinary missing capability, connection failure, or an interrupted supported authentication flow, use a local route only when the current tool rules permit it and the user has authorized the site, device, and scope. An explicit request such as “use my laptop browser for this capture” supplies that scope; do not ask again. Otherwise ask one bundled question identifying the computer, site, read-only scope, and any cloud storage not already authorized.
+- Reuse existing privacy/storage consent only within its scope. Reading a local browser through an assistant is not a promise of local-only processing. Do not copy browser profiles, cookies, tokens, or credentials into the cloud.
+
+In configuration, `capture_execution.mode` is cloud, local_manual, or local_scheduled. The template's `read_only=true` is a conservative starting value for a new deployment, not a new user instruction. Set it from the latest explicit scope: a current read-only restriction wins; otherwise existing single_item_toggle/named_combo_toggle grants still govern their respective operations. When migrating older configurations that lack the field, preserve those grants rather than assuming a new restriction. Permission to read never supplies permission to toggle. Record the actual route and any requested authentication handoff; leave unconfirmed device/browser values null.
+
+## 2. Select the actual computer and browser
+1. Use the current environment instructions. If the requested computer is already selected, use it; otherwise list environments, identify the named computer unambiguously, and attach it. Continue execution in the thread that attached it. Do not claim a cloud browser or cloud filesystem is the user's computer.
+2. Report “offline” only when the environment tool reports that state. A missing device, failed attachment, browser connection error, and offline device are different facts. If the needed capability is unavailable, preserve the failed attempt and ask for the smallest necessary reconnection or manual action.
+3. Read the selected computer's browser/computer-control instructions. Use the supported normal browser UI and existing authorized profile. Resolve the current browser and tab from fresh observations; do not assume a browser brand, profile, old tab identifier, or login state.
+4. If the user asks for homepage → cart, follow that order: open the official regional homepage, then use the visible cart entry. Verify the resulting official domain, currency, cart, and minimal account context. Do not silently substitute another regional storefront or a different account. A direct cart URL is not a substitute for a specifically requested route.
+
+## 3. Hand over and resume without a second login
+- A request such as “let me take over if login or verification is needed” overrides automation-first authentication for this run. Stop before handling that step yourself, identify the current computer/browser/page, and use the supported handoff. Do not solve a challenge merely because a previous general grant exists when the user has now requested manual control.
+- Let the user perform login, CAPTCHA, device approval, or any requested verification on the official page. Never request a password in chat, capture a login QR code in history, inspect credential stores, or log verification secrets. Follow the current confirmation rules for any agreement or security warning.
+- While the user has control, do not click, refresh, type, or compete for focus. Keep one active handoff rather than opening repeated login tabs or sending repeated codes.
+- When the user says they are done, resume by freshly inspecting the same computer and the tab they used. Relist/re-identify it rather than blindly using an old tab ID. Verify the actual cart content or explicit logged-in empty-cart state; a user statement or avatar alone is insufficient. If that tab is missing or the page is still blocked, report the precise current state instead of claiming success or repeatedly restarting login.
+- After handoff, perform the normal cart refresh and stable-observation checks in capture.md. Record the real refresh result and observation times. If refresh fails, retain any visible evidence as incomplete/stale rather than current-price success. Close stale authentication waits only after verification.
+
+## 4. Capture only the authorized scope
+Follow capture.md and storage-schema.md on the local browser, including full top-to-bottom coverage, unavailable entries, quantity and selection checks, visible promotions, redacted evidence, and verified persistence.
+
+For “read prices only,” “do not modify the cart,” or equivalent restrictions:
+- Do not toggle checkboxes, select-all, deselect, change quantities, remove/move/add items, claim coupons, enter checkout, order, or pay. Do not force the selection-quote workflow merely to fill every table.
+- Record displayed item prices and the baseline current-selection summary with their actual semantics. SingleItemQuotes and ComboQuotes remain empty unless a separately authorized selection workflow actually measures them. Never relabel baseline prices or an arithmetic sum as observed single-selection/combination quotes.
+- Compare the final visible quantities/selections with the baseline without changing them. Record `NOT_NEEDED_NO_MUTATION` for restoration and separately record whether the unchanged state was verified; do not call a restoration performed. If the user changed the cart during handoff, establish the post-handoff baseline before capture rather than undoing their changes.
+- Distinguish active cart, saved-for-later, recommended, and unavailable-item sections. Do not include recommendations or saved-for-later entries as active cart rows without an explicitly agreed scope. Record ambiguous or inaccessible coverage as PARTIAL.
+- Preserve non-price notices as notices. A change to a category/rating label is not a price change; a banner saying a price changed needs an explicit previous/current amount to quantify a difference. Preserve unknown values rather than reconstructing them from generic messages.
+- Verify currency from the page. Do not label USD or another currency as CNY/fen; configure its minor units and keep currency-specific histories isolated.
+
+## 5. Keep a minimal operation record and one history
+In private source data, record attempted time, execution mode, private device reference, observed browser, official sanitized source URL, action, result, handoff reason/completion verification, refresh status, coverage, unchanged-state evidence, and save/reopen result. Use real timestamps only; unobserved times stay unknown. Keep enough step detail to reproduce homepage → cart → handoff → same-tab verification → refresh → capture → save without recording account identifiers, addresses, secrets, or full-page screenshots.
+
+Link the local attempt to the cloud failure through `fallback_of_attempt_id` when known. If both are attempts of the same logical run, retain the run_id and use separate attempt_id values; a new manual capture receives a new run_id. Preserve the failed attempt even after local success. Record actual local observation time, never a missed schedule's time. Keep the authoritative cloud file identities when storage consent still applies; a local capture does not authorize writing desktop files or creating another master workbook.
+
+Use private source-device references in runtime data; public skill updates must contain only generalized procedures or synthetic examples, not real device names, tab/session identifiers, cart products/prices, or user/account data. A request to improve this skill does not authorize publication of the user's capture history.
+
+## 6. Availability and completion claims
+Default this fallback to `local_manual`, not a silently changed recurring task. State that the computer must be online and reachable, the browser connection and session must work, and login/verification may require the user. Never promise captures while that computer is off, or infer unattended reliability from one successful interactive run.
+
+Keep existing cloud schedules unchanged unless the user authorizes a change. A cloud-only scheduled task must log its blocker rather than switch onto the user's computer. Recurring local capture requires a separate explicit scope, a scheduler that can target that computer/browser, verified availability and notification behavior, read-back of the saved configuration, and later real-run checks. Mark unsupported capabilities as unavailable; do not simulate scheduling with a long-running conversation.
+
+Report capture, coverage, stored data, and recurring readiness separately. A local cart read is not proof that workbook storage succeeded, a save is not proof of future access, and a complete read-only baseline is not a complete selection-quote run. Missing periods remain missing. Offer the smallest next action only if needed.
